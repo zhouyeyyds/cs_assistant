@@ -1,11 +1,52 @@
 ## 环境配置
-
 - IDE [VSCode](https://code.visualstudio.com/)
-- 代码格式化工具 [Eslint](https://eslint.org/)
-  - 代码风格 [@antfu/eslint-config](https://github.com/antfu/eslint-config)
-- 插件
-  - [Eslint](https://github.com/Microsoft/vscode-eslint)
-  - [Vue Language Features (Volar)](https://github.com/johnsoncodehk/volar)
+
+## 1. 下载 [node.js](https://nodejs.org/zh-cn/)
+## 2. 安装
+## 3. 查看是否安装成功
+*   `node -v` 查看node的版本
+*   `npm -v`  查看npm的版本(新版的node安装自带安装npm）
+>  使用快捷键 win+r => 输入cmd 指令进入命令提示符窗
+
+## 4. 设置淘宝镜像
+> 右击“以管理员身份运行”运行Windows PoweShell，进入命令提示符窗
+
+*  查看当前镜像地址：
+```npm
+npm config get registry
+```
+* 设置淘宝镜像地址：
+```npm
+npm config set registry https://registry.npm.taobao.org
+```
+
+## 5. 导入数据库 
+> 将test.sql导入自己的数据库
+
+## 6. 启动服务器 
+> 新建一个终端 进入目录 `cd D:\vue3\cs_assistant\server` 
+
+> 输入 
+```node.js
+node app.js
+```
+
+## 7. 启动运行
+>  进入目录 `cd D:\vue3\cs_assistant` 
+
+>  输入
+```npm
+ npm install
+```
+ 安装依赖
+> 然后输入
+```npm
+npm run dev
+```
+
+
+ ### ***即可在浏览器运行该软件*** 
+
 
 ## 技术栈
 

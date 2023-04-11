@@ -5,16 +5,15 @@ import store from './store/Piniaconfig'
 
 // 引入svg图
 import 'virtual:svg-icons-register'
-
 // 导入Unocss
-import 'uno.css'
+import 'virtual:uno.css'
 // 引入动画库 animate.css
 import 'animate.css';
-//引入vant组件
+// 引入vant组件
 import { Tabbar, TabbarItem,Search,Tab, Tabs ,Empty,Icon ,Switch ,
          Circle ,Tag,Swipe, SwipeItem ,Popup,Toast,SwipeCell,
          Button,DropdownMenu, DropdownItem ,CountDown ,Collapse, 
-         CollapseItem ,BackTop,Pagination ,ShareSheet,    } from 'vant';
+         CollapseItem ,BackTop,Pagination ,ShareSheet,} from 'vant';
 // 引入element-plus
 import ElementPlus from 'element-plus'
 // 引入公共样式的css
