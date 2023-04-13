@@ -49,15 +49,5 @@ export const mainstore= defineStore("main",{
   actions:{
       
   },
-  // 开启数据持久化缓存
-  // persist: {
-  //   enabled: true,
-  //   strategies: [
-  //     {
-  //       storage: localStorage,
-  //     }
-  //   ]
-  // }
-  
 })
 

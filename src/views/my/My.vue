@@ -37,10 +37,10 @@ import { onMounted,ref } from "vue"
 <template>
     <!-- 顶部 -->
   <div class="top">
-      <div class=" flex-col px-10px">
-        <span class="text-20px text-[#fff] mb-5px">{{ greet[greetIndex] }}</span>
-        <span class="text-14px mb-5px text-[#fff]">{{ text[randIndex] }}</span>
-        <span class="text-13px text-[#fff] mb-10px">快去练习吧~</span>
+      <div class=" flex-col px-0.625rem">
+        <span class="text-1.25rem text-[#fff] mb-0.3125rem">{{ greet[greetIndex] }}</span>
+        <span class="text-0.875rem mb-0.3125rem text-[#fff]">{{ text[randIndex] }}</span>
+        <span class="text-0.8125rem text-[#fff] mb-0.625rem">快去练习吧~</span>
       </div>
       <!-- 下方部分 显示收藏数量和错题数量-->
       <Button></Button>
@@ -60,11 +60,11 @@ import { onMounted,ref } from "vue"
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 148px;
-    margin-bottom: 20px;
-    padding:  10px;
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
+    height: 9.25rem;
+    margin-bottom: 1.25rem;
+    padding:  .625rem;
+    border-bottom-right-radius: .625rem;
+    border-bottom-left-radius: .625rem;
     background: url("@/assets/img/bgi.jpg") no-repeat 50% 50%;
 }
 </style>

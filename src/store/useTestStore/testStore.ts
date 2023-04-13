@@ -1,5 +1,4 @@
 import { defineStore } from "pinia";
-
 export const useTestStore= defineStore("test",{
   state:()=>{
     return{
@@ -54,13 +53,13 @@ export const useTestStore= defineStore("test",{
       
   },
   // 开启数据持久化缓存
-  // persist: {
-  //   enabled: true,
-  //   strategies: [
-  //     {
-  //       storage: localStorage,
-  //     }
-  //   ]
-  // }
+  persist: {
+    enabled: true,
+    strategies: [
+      {
+        storage: localStorage,
+      }
+    ]
+  }
 })
 

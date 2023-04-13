@@ -10,11 +10,11 @@ import { ref } from 'vue';
             <van-count-down :time="time">
                 <template #default="timeData">
                     <div class="f-b-c">
-                        <span class=" w-22px text-[#fff] text-12px bg-[#1989fa] text-center">{{ timeData.hours }}</span>
-                        <span class=" mx-4px">:</span>
-                        <span class=" w-22px text-[#fff] text-12px bg-[#1989fa] text-center">{{ timeData.minutes }}</span>
-                        <span class=" mx-4px">:</span>
-                        <span class=" w-22px text-[#fff] text-12px bg-[#1989fa] text-center">{{ timeData.seconds }}</span>
+                        <span class=" w-1.375rem text-[#fff] text-0.75rem bg-[#1989fa] text-center">{{ timeData.hours }}</span>
+                        <span class=" mx-0.25rem">:</span>
+                        <span class=" w-1.375rem text-[#fff] text-0.75rem bg-[#1989fa] text-center">{{ timeData.minutes }}</span>
+                        <span class=" mx-0.25rem">:</span>
+                        <span class=" w-1.375rem text-[#fff] text-0.75rem bg-[#1989fa] text-center">{{ timeData.seconds }}</span>
                     </div>
                 </template>
             </van-count-down>

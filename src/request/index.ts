@@ -1,10 +1,7 @@
-import axios from "axios";
-// 先引入 
+import axios from "axios";// 先引入 
 
-// 然后创建实例
-var service=axios.create({
-    // 配置公共请求头
-    baseURL:"http://localhost:3000",
+const service=axios.create({// 然后创建实例
+    baseURL:"http://localhost:3000",// 配置公共请求头
     // 配置延迟时间
     timeout:3000  //设置延迟时间 比如3秒钟后回应请求超时 重新请求
 })

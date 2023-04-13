@@ -36,7 +36,7 @@
   
   <style  scoped>
     .icon{
-      font-size: 1.5626rem;
+      font-size: 25.0016px;
     }
   
   </style>

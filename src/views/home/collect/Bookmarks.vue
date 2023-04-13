@@ -1,43 +1,43 @@
 <template>
     <!-- 顶部导航 -->
     <Navbar :index="index" :test="test"></Navbar>
-    <div class="mt-108px">
+    <div class="mt-6.75rem">
         <!-- 下拉菜单 -->
         <Dropdown  :id="Number(id)" @changeempty="changeempty"></Dropdown>
         <!-- 空状态 -->
-        <van-empty description="空空如也" class="mt-110px" v-show="!isempty"/>
+        <van-empty description="空空如也" class="mt-6.875rem" v-show="!isempty"/>
         <!-- 收藏项目 -->
-        <div class="-mt-5px text-1rem mb-50px f-b-c flex-col  text-14px" v-show="isempty">
-            <van-swipe-cell class="mt-15px bg-white  f-b-c flex-col items-start p-10px rounded-10px w-90% " v-for="item,index in showlist" :key="item.id">
+        <div class="-mt-0.3125rem text-16px mb-3.125rem f-b-c flex-col  text-0.875rem" v-show="isempty">
+            <van-swipe-cell class="mt-0.9375rem bg-white  f-b-c flex-col items-start p-0.625rem rounded-0.625rem w-90% " v-for="item,index in showlist" :key="item.id">
                 <template #right>
                     <van-button square type="danger" text="删除" class="collect" @click="deleteItem(index+(currentPage-1)*pageSize)"/>
                 </template>
-                <li class="mb-10px w-320px">
+                <li class="mb-0.625rem w-20rem">
                 {{ index+1+(currentPage-1)*pageSize }}. {{ item.text }}
                 </li>
-                <li class="mb-5px">
-                    <svg class="icon text-25px -ml-6px" aria-hidden="true" v-if="item.answer=='a'">
+                <li class="mb-0.3125rem">
+                    <svg class="icon text-1.5625rem -ml-0.375rem" aria-hidden="true" v-if="item.answer=='a'">
                         <use xlink:href="#icon-gouxuan"></use>
                     </svg>
                     <span class="round" v-else>A.</span>
                     <span>{{ item.a }}</span>
                 </li>
-                <li class="mb-5px">
-                    <svg class="icon text-25px -ml-6px" aria-hidden="true" v-if="item.answer=='b'">
+                <li class="mb-0.3125rem">
+                    <svg class="icon text-1.5625rem -ml-0.375rem" aria-hidden="true" v-if="item.answer=='b'">
                         <use xlink:href="#icon-gouxuan"></use>
                     </svg>
                     <span class="round" v-else>B.</span>
                     <span>{{ item.b }}</span>
                 </li>
-                <li class="mb-5px ">
-                    <svg class="icon text-25px -ml-6px" aria-hidden="true" v-if="item.answer=='c'">
+                <li class="mb-0.3125rem ">
+                    <svg class="icon text-1.5625rem -ml-0.375rem" aria-hidden="true" v-if="item.answer=='c'">
                         <use xlink:href="#icon-gouxuan"></use>
                     </svg>
                     <span class="round" v-else>C.</span>
                     <span>{{ item.c }}</span>
                 </li>
-                <li class="mb-10px">
-                    <svg class="icon text-25px -ml-6px" aria-hidden="true" v-if="item.answer=='d'">
+                <li class="mb-0.625rem">
+                    <svg class="icon text-1.5625rem -ml-0.375rem" aria-hidden="true" v-if="item.answer=='d'">
                         <use xlink:href="#icon-gouxuan"></use>
                     </svg>
                     <span class="round" v-else>D.</span>
@@ -159,8 +159,8 @@ import { mainstore } from '@/store/index';
 
 <style scoped>
 .collect{
-        margin-top: 3.4375rem;
-        height: 5.625rem;
-        margin-left: 3.75rem;
+        margin-top: 55px;
+        height: 90px;
+        margin-left: 60px;
     }
 </style>

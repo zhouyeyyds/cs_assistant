@@ -47,39 +47,39 @@ import {showToast} from "vant"
 </script>
 
 <template>
-  <div class=" bg-[#fff] rounded-10px mt-170px mx-10px mb-10px text-14px">
-      <li class="f-b-c px-10px w-100% h-50px" @click="router.push({name:'about'})">
+  <div class=" bg-[#fff] rounded-0.625rem mt-10.625rem mx-0.625rem mb-0.625rem text-0.875rem">
+      <li class="f-b-c px-0.625rem w-100% h-3.125rem" @click="router.push({name:'about'})">
         <div class="f-b-c">
-          <span class="iconfont icon-guanyuwomen mr-5px"></span>
+          <span class="iconfont icon-guanyuwomen mr-0.3125rem"></span>
           <span>关于软件</span>
         </div>
         <van-icon name="arrow"  style="color: rgb(201, 200, 200);"/>
       </li>
-      <li class="f-b-c px-10px w-100% h-50px" @click="showpop=true">
+      <li class="f-b-c px-0.625rem w-100% h-3.125rem" @click="showpop=true">
         <div class="f-b-c">
-          <span class="iconfont icon-message mr-5px"></span>
+          <span class="iconfont icon-message mr-0.3125rem"></span>
           <span>反馈与建议</span>
         </div>
         <van-icon name="arrow"  style="color: rgb(201, 200, 200);" />
       </li>
-      <li class="f-b-c px-10px w-100% h-50px" @click="showShare=true">
+      <li class="f-b-c px-0.625rem w-100% h-3.125rem" @click="showShare=true">
         <div class="f-b-c">
-          <span class="iconfont icon-turnvoice mr-5px"></span>
+          <span class="iconfont icon-turnvoice mr-0.3125rem"></span>
           <span>分享App</span>
         </div>
         <van-icon name="arrow" style="color: rgb(201, 200, 200);" />
       </li>
   </div>
   <!-- 提示反馈与建议 -->
-  <van-popup v-model:show="showpop" :style="{ padding: '20px' ,width:'80%',height:'35%'}" round> 
+  <van-popup v-model:show="showpop" :style="{ padding: '1.25rem' ,width:'80%',height:'35%'}" round> 
       <div class="flex flex-col justify-between w-100% h-100%">
           <textarea name="textarea" cols="30" rows="10" placeholder="点击输入!
 感谢您提出的宝贵意见，这对我们非常重要！ 
                                                                       (也可以留下您的联系方式，方便我们及时联络您)  " 
-      class="text-14px" ref="suggestionRef"></textarea>
-          <div class="text-14px ml-150px" >
+      class="text-0.875rem" ref="suggestionRef"></textarea>
+          <div class="text-0.875rem ml-9.375rem" >
               <span @click="cancel">取消</span>
-              <span class="ml-30px text-[#35a1fc]" @click="sendSuggestion">发送</span>
+              <span class="ml-1.875rem text-[#35a1fc]" @click="sendSuggestion">发送</span>
           </div>
       </div>
   </van-popup>
@@ -93,12 +93,12 @@ import {showToast} from "vant"
 
 <style scoped>
 .icon-guanyuwomen::before{
-  font-size: 20px;
+  font-size: 1.25rem;
 }
 .icon-message::before{
-  font-size: 23px;
+  font-size: 1.4375rem;
 }
 .icon-turnvoice::before{
-  font-size: 22px;
+  font-size: 1.375rem;
 }
 </style>

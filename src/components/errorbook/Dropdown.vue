@@ -1,13 +1,13 @@
 <template>
-  <van-dropdown-menu class="fixed w-100% z-9 left-0 top-60px">
+  <van-dropdown-menu class="fixed w-100% z-9 left-0 top-3.75rem">
         <van-dropdown-item :title="arr[index-1]" ref="dropdownItemRef">
-            <ul class="f-b-c h-40px p-x-15px m-y-10px text-14px dropdown">
+            <ul class="f-b-c h-2.5rem p-x-0.9375rem m-y-0.625rem text-0.875rem dropdown">
             <li :class="{'active':id==1}" @click="changeactive(1,$event)">计组</li>
             <li :class="{'active':id==2}" @click="changeactive(2,$event)">计网</li>
             <li :class="{'active':id==3}" @click="changeactive(3,$event)">操作系统</li>
             <li :class="{'active':id==4}" @click="changeactive(4,$event)">数据结构</li>
             </ul>
-            <div style="padding: 5px 16px;">
+            <div style="padding: .3125rem 1rem;">
             <van-button type="primary" block round @click="up">
                 确认
             </van-button>
@@ -54,13 +54,13 @@ import type { DropdownItemInstance } from 'vant';
 <style scoped>
 
  li{
-      margin: 0 5px;
-      height: 40px;
+      margin: 0 .3125rem;
+      height: 2.5rem;
       width: 25%;
-      border: 1px solid #e2e2e2;
+      border: .0625rem solid #e2e2e2;
       text-align: center;
-      line-height: 40px;
-      border-radius: 5555px;
+      line-height: 2.5rem;
+      border-radius: 347.1875rem;
       background-color: #f9f9f9;
     }
 

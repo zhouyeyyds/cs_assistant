@@ -32,17 +32,17 @@
     <!-- 标签栏结束 -->
 
     <!-- 功能模块开始 -->
-    <div class="flex justify-around items-center flex-wrap text-16px">
-      <div class=" w-150px h-100px bg-white rounded-10px  center lib" @click="router.push({name:'lib'})">
+    <div class="flex justify-around items-center flex-wrap text-1rem">
+      <div class=" w-9.375rem h-6.25rem bg-white rounded-0.625rem  center lib" @click="router.push({name:'lib'})">
         浏览题库
       </div>
-      <div class="w-150px h-100px bg-white rounded-10px  center bookmark" @click="router.push({name:'collect'})">
+      <div class="w-9.375rem h-6.25rem bg-white rounded-0.625rem  center bookmark" @click="router.push({name:'collect'})">
         收藏夹
       </div>
-      <div class="w-150px h-100px bg-white rounded-10px  center mt-20px errorbook" @click="router.push({name:'errorbook'})">
+      <div class="w-9.375rem h-6.25rem bg-white rounded-0.625rem  center mt-1.25rem errorbook" @click="router.push({name:'errorbook'})">
         错题本
       </div>
-      <div class="w-150px h-100px bg-white rounded-10px  center mt-20px study" @click="router.push({name:'analysis'})">
+      <div class="w-9.375rem h-6.25rem bg-white rounded-0.625rem  center mt-1.25rem study" @click="router.push({name:'analysis'})">
         成绩分析
       </div>
     </div>

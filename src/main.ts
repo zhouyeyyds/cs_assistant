@@ -23,6 +23,9 @@ import "@/assets/font/iconfont.css"
 import "@/assets/font/iconfont.js"
 import 'element-plus/dist/index.css'
 
+// 导入rem布局
+import "@/assets/rem/flexible"
+
 
 const app=createApp(App)
 

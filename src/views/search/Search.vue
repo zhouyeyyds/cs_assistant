@@ -1,7 +1,7 @@
 <template>
 <div class="search">
     <!-- 头部导航 -->
-    <div class="fixed left-0 top-0 w-100% h-60px text-13px px-10px bg-[#fff] f-b-c  z-10">
+    <div class="fixed left-0 top-0 w-100% h-3.75rem text-0.8125rem px-0.625rem bg-[#fff] f-b-c  z-10">
         <span class="back iconfont icon-arrow-left-bold" @click="back"></span>
         <!--左边返回按钮 -->
 
@@ -20,15 +20,15 @@
 
     <!-- 搜索历史 -->
     <div class="history" v-show="!issearch">
-        <div class="w-100% mt-70px p-10px mb-10px border-b-solid border-b-[#eee] border-1px f-b-c">
+        <div class="w-100% mt-4.375rem p-0.625rem mb-0.625rem border-b-solid border-b-[#eee] border-0.0625rem f-b-c">
             <p>历史搜索</p>
-            <van-icon name="delete-o" class="w-44px h-44px delete" @click="deletehistorylist"/>
+            <van-icon name="delete-o" class="w-2.75rem h-2.75rem delete" @click="deletehistorylist"/>
             <!-- 清空 -->
             <van-popup v-model:show="isshowtip" round>
-                <div class="w-250px h-150px flex-col p-10px text-14px">
-                    <p class="mb-80px">确定清空全部历史记录 ?</p>
-                    <span class="ml-120px">
-                        <span @click="cancle" class="mr-30px">取消</span>
+                <div class="w-15.625rem h-9.375rem flex-col p-0.625rem text-0.875rem">
+                    <p class="mb-5rem">确定清空全部历史记录 ?</p>
+                    <span class="ml-7.5rem">
+                        <span @click="cancle" class="mr-1.875rem">取消</span>
                         <span @click="clearall" class="text-[#35a1fc]">清空</span>
                     </span>
                 </div>
@@ -36,49 +36,49 @@
         </div>
         <!-- 每一个历史记录 -->
         <div>
-            <span v-for="item,index in historylist" :key="index" @click="search(item)" class="inline-block bg-[#fff] rounded-full m-5px px-15px text-13px h-30px item">
+            <span v-for="item,index in historylist" :key="index" @click="search(item)" class="inline-block bg-[#fff] rounded-full m-0.3125rem px-0.9375rem text-0.8125rem h-1.875rem item">
                 {{item}}
             </span>
         </div>
     </div>
 
     <!-- 搜索结果 -->
-    <div class="mt-60px text-1rem mb-50px f-b-c flex-col mb-20px text-14px" v-show="issearch">
-        <div class="fixed text-13px h-20px w-full bg-[#eee] text-center overscroll-contain z-10">当前结果共有<span class="text-[#35a1fc]">{{searchres.length}}</span>条</div>
-        <van-swipe-cell class="mt-15px bg-white  f-b-c flex-col p-10px rounded-10px w-90%" v-for="item,index in showlist" :key="item.id">
+    <div class="mt-3.75rem text-16px mb-3.125rem f-b-c flex-col mb-1.25rem text-0.875rem" v-show="issearch">
+        <div class="fixed text-0.8125rem h-1.25rem w-full bg-[#eee] text-center overscroll-contain z-10">当前结果共有<span class="text-[#35a1fc]">{{searchres.length}}</span>条</div>
+        <van-swipe-cell class="mt-0.9375rem bg-white  f-b-c flex-col p-0.625rem rounded-0.625rem w-90%" v-for="item,index in showlist" :key="item.id">
             <template #right>
                 <van-button square type="primary" text="收藏" class="collect" @click="collect(index+(currentPage-1)*pageSize)"/>
             </template>
-            <li class="mb-10px w-320px ">
+            <li class="mb-0.625rem w-20rem ">
                 <van-tag type="primary" v-show="item.cid==1">计组</van-tag>
                 <van-tag type="primary" v-show="item.cid==2">计网</van-tag>
                 <van-tag type="primary" v-show="item.cid==3">操作系统</van-tag>
                 <van-tag type="primary" v-show="item.cid==4">数据结构</van-tag>
                 {{ index+1+(currentPage-1)*pageSize  }}. <span v-html="highlight(item.text)"></span>
             </li>
-            <li class="mb-5px">
-                <svg class="icon text-25px -ml-6px" aria-hidden="true" v-if="item.answer=='a'">
+            <li class="mb-0.3125rem">
+                <svg class="icon text-1.5625rem -ml-0.375rem" aria-hidden="true" v-if="item.answer=='a'">
                     <use xlink:href="#icon-gouxuan"></use>
                 </svg>
                 <span class="round" v-else>A.</span>
                 <span>{{ item.a }}</span>
             </li>
-            <li class="mb-5px">
-                <svg class="icon text-25px -ml-6px" aria-hidden="true" v-if="item.answer=='b'">
+            <li class="mb-0.3125rem">
+                <svg class="icon text-1.5625rem -ml-0.375rem" aria-hidden="true" v-if="item.answer=='b'">
                     <use xlink:href="#icon-gouxuan"></use>
                 </svg>
                 <span class="round" v-else>B.</span>
                 <span>{{ item.b }}</span>
             </li>
-            <li class="mb-5px ">
-                <svg class="icon text-25px -ml-6px" aria-hidden="true" v-if="item.answer=='c'">
+            <li class="mb-0.3125rem ">
+                <svg class="icon text-1.5625rem -ml-0.375rem" aria-hidden="true" v-if="item.answer=='c'">
                     <use xlink:href="#icon-gouxuan"></use>
                 </svg>
                 <span class="round" v-else>C.</span>
                 <span>{{ item.c }}</span>
             </li>
-            <li class="mb-10px">
-                <svg class="icon text-25px -ml-6px" aria-hidden="true" v-if="item.answer=='d'">
+            <li class="mb-0.625rem">
+                <svg class="icon text-1.5625rem -ml-0.375rem" aria-hidden="true" v-if="item.answer=='d'">
                     <use xlink:href="#icon-gouxuan"></use>
                 </svg>
                 <span class="round" v-else>D.</span>
@@ -254,9 +254,9 @@
 <style scoped>
 
 .collect{
-    margin-top: 3.4375rem;
-    height: 5.625rem;
-    margin-left: 3.75rem;
+    margin-top: 55px;
+    height: 90px;
+    margin-left: 60px;
 }
 .delete{
     font-size: 4.8vw;
@@ -266,6 +266,6 @@
     align-items: center;
 }
 .item{
-    line-height: 30px;
+    line-height: 1.875rem;
 }
   </style>

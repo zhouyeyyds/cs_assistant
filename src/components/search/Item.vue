@@ -56,42 +56,42 @@ import { pagination} from '@/utils/pagination/pagination'
 </script>
 
 <template>
-<div class="mt-60px text-1rem f-b-c flex-col mb-20px text-14px" >
-   <div class="fixed text-13px h-20px w-full bg-[#eee] text-center overscroll-contain z-10">当前结果共有{{searchres.length}}条</div>
-   <van-swipe-cell class="mt-15px bg-white  f-b-c flex-col p-10px rounded-10px w-90%" v-for="item,index in showlist" :key="item.id">
+<div class="mt-3.75rem text-16px f-b-c flex-col mb-1.25rem text-0.875rem" >
+   <div class="fixed text-0.8125rem h-1.25rem w-full bg-[#eee] text-center overscroll-contain z-10">当前结果共有{{searchres.length}}条</div>
+   <van-swipe-cell class="mt-0.9375rem bg-white  f-b-c flex-col p-0.625rem rounded-0.625rem w-90%" v-for="item,index in showlist" :key="item.id">
       <template #right>
          <van-button square type="primary" text="收藏" class="collect" @click="collect(index+(currentPage-1)*pageSize)"/>
       </template>
-      <li class="mb-10px w-320px ">
+      <li class="mb-0.625rem w-20rem ">
          <van-tag type="primary" v-show="item.cid==1">计组</van-tag>
          <van-tag type="primary" v-show="item.cid==2">计网</van-tag>
          <van-tag type="primary" v-show="item.cid==3">操作系统</van-tag>
          <van-tag type="primary" v-show="item.cid==4">数据结构</van-tag>
          {{ index+1+(currentPage-1)*pageSize  }}. {{ item.text }}
       </li>
-      <li class="mb-5px">
-         <svg class="icon text-25px -ml-6px" aria-hidden="true" v-if="item.answer=='a'">
+      <li class="mb-0.3125rem">
+         <svg class="icon text-1.5625rem -ml-0.375rem" aria-hidden="true" v-if="item.answer=='a'">
             <use xlink:href="#icon-gouxuan"></use>
          </svg>
          <span class="round" v-else>A.</span>
          <span>{{ item.a }}</span>
       </li>
-      <li class="mb-5px">
-         <svg class="icon text-25px -ml-6px" aria-hidden="true" v-if="item.answer=='b'">
+      <li class="mb-0.3125rem">
+         <svg class="icon text-1.5625rem -ml-0.375rem" aria-hidden="true" v-if="item.answer=='b'">
             <use xlink:href="#icon-gouxuan"></use>
          </svg>
          <span class="round" v-else>B.</span>
          <span>{{ item.b }}</span>
       </li>
-      <li class="mb-5px ">
-         <svg class="icon text-25px -ml-6px" aria-hidden="true" v-if="item.answer=='c'">
+      <li class="mb-0.3125rem ">
+         <svg class="icon text-1.5625rem -ml-0.375rem" aria-hidden="true" v-if="item.answer=='c'">
             <use xlink:href="#icon-gouxuan"></use>
          </svg>
          <span class="round" v-else>C.</span>
          <span>{{ item.c }}</span>
       </li>
-      <li class="mb-10px">
-         <svg class="icon text-25px -ml-6px" aria-hidden="true" v-if="item.answer=='d'">
+      <li class="mb-0.625rem">
+         <svg class="icon text-1.5625rem -ml-0.375rem" aria-hidden="true" v-if="item.answer=='d'">
             <use xlink:href="#icon-gouxuan"></use>
          </svg>
          <span class="round" v-else>D.</span>
@@ -127,8 +127,8 @@ import { pagination} from '@/utils/pagination/pagination'
 
 <style>
 .collect{
-        margin-top: 3.4375rem;
-        height: 5.625rem;
-        margin-left: 3.75rem;
+        margin-top: 55px;
+        height: 90px;
+        margin-left: 60px;
     }
 </style>

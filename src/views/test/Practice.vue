@@ -24,11 +24,11 @@
              <span>设置</span>
              <li class="flex justify-between items-center">
                  <span>答对跳转下一题</span>
-                 <van-switch v-model="right_next" size="1.125rem" />
+                 <van-switch v-model="right_next" size="18px" />
              </li>
              <li class="flex justify-between items-center">
                  <span>答错跳转下一题</span>
-                 <van-switch v-model="false_next" size="1.125rem" />
+                 <van-switch v-model="false_next" size="18px" />
              </li>
              <li class="flex justify-between items-center">
                  <span>重新练习</span>
@@ -100,11 +100,11 @@
          </div>
          
          <!-- 底部题板 -->
-         <div class=" bg-white absolute left-0 bottom-0 w-100% px-5px">
+         <div class=" bg-white absolute left-0 bottom-0 w-100% px-0.3125rem">
             <van-collapse v-model="showpannel" :accordion="true">
                 <van-collapse-item name="1" :is-link="false" lazy-render  ref="collapseItemRef">
                     <template #title >
-                        <div class="f-b-c w-100% h-1.875rem text-13px">
+                        <div class="f-b-c w-100% h-30px text-0.8125rem">
                             <div class="shoucang f-b-c flex-col" @click="favorite">
                                 <span class="iconfont icon-shoucang" v-show="!isfavorite"></span>
                                 <svg class="icon ing" aria-hidden="true" v-show="isfavorite">
@@ -411,85 +411,85 @@
          left: 0;
          top: 0;
          width: 100%;
-         height: 3.75rem;
-         padding: .625rem;
+         height: 60px;
+         padding: 10px;
          background-color: #fff;
  
          .back{
              text-align: center;
-             width: 2.75rem;
-             height: 2.75rem;
-             line-height: 2.75rem;
-             font-size: 1.25rem;
+             width: 44px;
+             height: 44px;
+             line-height: 44px;
+             font-size: 20px;
          }
  
          .tab{
-             width: 11.25rem;
+             width: 180px;
          }
  
          .icon-setting{
              text-align: center;
-             width: 2.75rem;
-             height: 2.75rem;
-             line-height: 2.75rem;
-             font-size: 1.375rem;
+             width: 44px;
+             height: 44px;
+             line-height: 44px;
+             font-size: 22px;
          }
      }
      .set{
          flex-direction: column;
-         padding: 1rem;
-         font-size: .9375rem;
+         padding: 16px;
+         font-size: 15px;
  
          li{
              width: 100%;
-             height: 3rem;
-             border-bottom: .0625rem solid #e7e7e7;
+             height: 48px;
+             border-bottom: 1px solid #e7e7e7;
          }
  
          li:last-child{
              width: 100%;
-             height: 3.0625rem;
+             height: 49px;
              border: none;
  
              .redo{
-                 font-size: 1.875rem;
+                 font-size: 30px;
              }
          }
      }
      .card{
-         margin-top: 5rem;
-         font-size: .9375rem;
+         margin-top: 80px;
+         font-size: 15px;
          .item{
-             border-radius: .625rem;
+             border-radius: 10px;
              background-color: #fff;
-             box-shadow: 0 0 .3125rem #ccc;
+             box-shadow: 0 0 5px #ccc;
          }
  
          .li{
-             padding: .625rem;
+             padding: 10px;
  
              .choice{
              flex-direction: column;
              align-items: flex-start;
-             margin-top: .625rem;
+             margin-top: 10px;
  
              .round{
-                 width: 2.5rem;
-                 height: 2.5rem;
+                 width: 40px;
+                 height: 40px;
                  border-radius: 50%;
-                 border: .0625rem solid #ccc;
+                 border: 1px solid #ccc;
                  text-align: center;
-                 line-height: 2.5rem;
-                 margin-right: .625rem;
-                 margin-top: .3125rem;
+                 line-height: 40px;
+                 margin-right: 10px;
+                 margin-top: 5px;
              }
  
              .icon{
-                 width: 2.5rem;
-                 height: 2.5rem;
-                 font-size: 2.5rem;
-                 margin-right: .625rem;
-                 margin-top: .3125rem;
+                 width: 40px;
+                 height: 40px;
+                 font-size: 40px;
+                 margin-right: 10px;
+                 margin-top: 5px;
              }
  
              }
@@ -497,11 +497,11 @@
      }
  
          .shoucang{
-             width: 3.125rem;
+             width: 50px;
  
              .ing{
                  //已经收藏的按钮图标
-                 font-size: 1.0625rem;
+                 font-size: 17px;
              }
          }
 
@@ -524,21 +524,21 @@
  
      .pop{
          width: 70vw;
-         height: 6.25rem;
+         height: 100px;
          padding: 2.667vw;
          font-size: 3.2vw;
          color: rgb(168, 166, 166);
  
          p{
-             margin-bottom: 2.8125rem;
+             margin-bottom: 45px;
          }
  
          .choice{
-             margin-left:9.375rem;
+             margin-left:150px;
              color: red;
  
              span:first-child{
-                 margin-right: 1.875rem;
+                 margin-right: 30px;
              }
          }
      }

@@ -4,12 +4,12 @@
 ## 1. 下载 [node.js](https://nodejs.org/zh-cn/)
 ## 2. 安装
 ## 3. 查看是否安装成功
-*   `node -v` 查看node的版本
-*   `npm -v`  查看npm的版本(新版的node安装自带安装npm）
 >  使用快捷键 win+r => 输入cmd 指令进入命令提示符窗
+*   `node -v` 查看node的版本
+*   `npm -v`  查看npm的版本 （新版的node安装自带安装npm）
 
 ## 4. 设置淘宝镜像
-> 右击“以管理员身份运行”运行Windows PoweShell，进入命令提示符窗
+> 使用快捷键 win+r => 输入cmd 右击“以管理员身份运行”运行Windows PoweShell，进入命令提示符窗
 
 *  查看当前镜像地址：
 ```npm
@@ -21,29 +21,25 @@ npm config set registry https://registry.npm.taobao.org
 ```
 
 ## 5. 导入数据库 
-> 将test.sql导入自己的数据库
+> 将根目录下的test.sql导入自己的数据库
+注意数据库的结构一定要保持一致
+![img]("src/assets/img/1.png")
 
-## 6. 启动服务器 
-> 新建一个终端 进入目录 `cd D:\vue3\cs_assistant\server` 
+## 6. Vscode 打开 `cs_assistant` 文件夹
+> 在左边的文件管理器中 点击 server/sql.js 
+修改密码为自己数据库的密码
 
-> 输入 
-```node.js
-node app.js
-```
+## 7. 启动服务器 
+> 新建一个终端 在目录 `cs_assistant\server` 下
 
-## 7. 启动运行
->  进入目录 `cd D:\vue3\cs_assistant` 
+> 输入 `npm install ` 安装服务器相关依赖
+然后输入 `node app.js` 启动服务器
 
->  输入
-```npm
- npm install
-```
- 安装依赖
-> 然后输入
-```npm
-npm run dev
-```
+## 8. 启动运行
+> 再新建一个终端 进入目录 `cd cs_assistant` 
 
+>  输入`npm install` 安装相关依赖
+> 然后输入`npm run dev`
 
  ### ***即可在浏览器运行该软件*** 
 

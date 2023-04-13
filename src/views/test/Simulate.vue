@@ -139,63 +139,63 @@ import type { SwipeInstance } from 'vant';
 
 <template>
   <!-- 顶部导航 -->
-  <div class="fixed left-0 top-0 flex items-center p-y-0 p-x-10px w-full h-60px bg-white text-15px z-999">
+  <div class="fixed left-0 top-0 flex items-center p-y-0 p-x-0.625rem w-full h-3.75rem bg-white text-0.9375rem z-999">
         <van-icon name="arrow-left" class="back" @click="router.go(-1)"/>
         <!-- 倒计时模块 -->
         <Countdown></Countdown>
   </div>
 
   <!-- 中间试题的渲染 -->
-  <div class="mt-80px text-15px">
+  <div class="mt-5rem text-0.9375rem">
     <van-swipe :loop="false" :width="375"   :show-indicators="false" touchable lazy-render ref="swipeRef" @change="onChange"> 
-        <van-swipe-item class="rounded-10px bg-white shadow-sm" v-for="item,index in simulatelist" :key="item.id">
-                <div class="p-10px">
+        <van-swipe-item class="rounded-0.625rem bg-white shadow-sm" v-for="item,index in simulatelist" :key="item.id">
+                <div class="p-0.625rem">
                     <van-tag type="primary" v-show="item.type=='s'">单选</van-tag>
                     <p>{{index+1}} . {{ item.text }}</p>
-                    <div class="mt-10px  flex flex-col items-start">
+                    <div class="mt-0.625rem  flex flex-col items-start">
                         <!-- 选项a -->
                         <div class="f-b-c" @click="test('a',item. answer)">
                             <!-- 基础图标 -->
-                            <span class="w-40px h-40px rounded-full border-1px border-solid border-[#ccc] mt-5px mr-10px flex justify-center items-center" v-show="status.a==0">A</span>
+                            <span class="w-2.5rem h-2.5rem rounded-full border-0.0625rem border-solid border-[#ccc] mt-0.3125rem mr-0.625rem flex justify-center items-center" v-show="status.a==0">A</span>
                             <!-- 选择正确后的图标 -->
-                            <svg class="icon  w-40px h-40px text-40px mr-10px mt-5px" aria-hidden="true" v-show="status.a==1">
+                            <svg class="icon  w-2.5rem h-2.5rem text-2.5rem mr-0.625rem mt-0.3125rem" aria-hidden="true" v-show="status.a==1">
                                 <use xlink:href="#icon-gouxuan"></use>
                             </svg>
                             <!-- 选择错误后的图标 -->
-                            <svg class="icon  w-40px h-40px text-40px mr-10px mt-5px" aria-hidden="true" v-show="status.a==2">
+                            <svg class="icon  w-2.5rem h-2.5rem text-2.5rem mr-0.625rem mt-0.3125rem" aria-hidden="true" v-show="status.a==2">
                                 <use xlink:href="#icon-danchuang-guanbixuanxiangka"></use>
                             </svg>
                             <span class="flex-1">{{ item.a }}</span>
                         </div>
                         <!-- 选项b -->
                         <div class="f-b-c"  @click="test('b',item. answer)">
-                            <span class="w-40px h-40px rounded-full border-1px border-solid border-[#ccc] mt-5px mr-10px flex justify-center items-center"  v-show="status.b==0">B</span>
-                            <svg class="icon w-40px h-40px text-40px mr-10px mt-5px" aria-hidden="true" v-show="status.b==1">
+                            <span class="w-2.5rem h-2.5rem rounded-full border-0.0625rem border-solid border-[#ccc] mt-0.3125rem mr-0.625rem flex justify-center items-center"  v-show="status.b==0">B</span>
+                            <svg class="icon w-2.5rem h-2.5rem text-2.5rem mr-0.625rem mt-0.3125rem" aria-hidden="true" v-show="status.b==1">
                                 <use xlink:href="#icon-gouxuan"></use>
                             </svg>
-                            <svg class="icon w-40px h-40px text-40px mr-10px mt-5px" aria-hidden="true" v-show="status.b==2">
+                            <svg class="icon w-2.5rem h-2.5rem text-2.5rem mr-0.625rem mt-0.3125rem" aria-hidden="true" v-show="status.b==2">
                                 <use xlink:href="#icon-danchuang-guanbixuanxiangka"></use>
                             </svg>
                             <span class="flex-1">{{ item.b }}</span>
                         </div>
                         <!-- 选项c -->
                         <div class="f-b-c" @click="test('c',item. answer)">
-                            <span class="w-40px h-40px rounded-full border-1px border-solid border-[#ccc] mt-5px mr-10px flex justify-center items-center"  v-show="status.c==0">C</span>
-                            <svg class="icon w-40px h-40px text-40px mr-10px mt-5px" aria-hidden="true" v-show="status.c==1">
+                            <span class="w-2.5rem h-2.5rem rounded-full border-0.0625rem border-solid border-[#ccc] mt-0.3125rem mr-0.625rem flex justify-center items-center"  v-show="status.c==0">C</span>
+                            <svg class="icon w-2.5rem h-2.5rem text-2.5rem mr-0.625rem mt-0.3125rem" aria-hidden="true" v-show="status.c==1">
                                 <use xlink:href="#icon-gouxuan"></use>
                             </svg>
-                            <svg class="icon w-40px h-40px text-40px mr-10px mt-5px" aria-hidden="true" v-show="status.c==2">
+                            <svg class="icon w-2.5rem h-2.5rem text-2.5rem mr-0.625rem mt-0.3125rem" aria-hidden="true" v-show="status.c==2">
                                 <use xlink:href="#icon-danchuang-guanbixuanxiangka"></use>
                             </svg>
                             <span class="flex-1">{{ item.c }}</span>
                         </div>
                         <!-- 选项d -->
                         <div class="f-b-c" @click="test('d',item. answer)">
-                            <span class="w-40px h-40px rounded-full border-1px border-solid border-[#ccc] mt-5px mr-10px flex justify-center items-center"  v-show="status.d==0">D</span>
-                            <svg class="icon w-40px h-40px text-40px mr-10px mt-5px" aria-hidden="true" v-show="status.d==1">
+                            <span class="w-2.5rem h-2.5rem rounded-full border-0.0625rem border-solid border-[#ccc] mt-0.3125rem mr-0.625rem flex justify-center items-center"  v-show="status.d==0">D</span>
+                            <svg class="icon w-2.5rem h-2.5rem text-2.5rem mr-0.625rem mt-0.3125rem" aria-hidden="true" v-show="status.d==1">
                                 <use xlink:href="#icon-gouxuan"></use>
                             </svg>
-                            <svg class="icon w-40px h-40px text-40px mr-10px mt-5px" aria-hidden="true" v-show="status.d==2">
+                            <svg class="icon w-2.5rem h-2.5rem text-2.5rem mr-0.625rem mt-0.3125rem" aria-hidden="true" v-show="status.d==2">
                                 <use xlink:href="#icon-danchuang-guanbixuanxiangka"></use>
                             </svg>
                             <span class="flex-1">{{ item.d }}</span>
@@ -211,10 +211,10 @@ import type { SwipeInstance } from 'vant';
     <van-collapse v-model="showpannel" :accordion="true">
         <van-collapse-item name="1"   :is-link="false" lazy-render ref="collapseItemRef">
             <template #title >
-                <div class="f-b-c h-30px bg-white w-100%  text-12px">
+                <div class="f-b-c h-1.875rem bg-white w-100%  text-0.75rem">
                     <!-- 交卷 -->
                     <div class="f-b-c" @click="finish">
-                        <svg class="icon text-20px mr-5px" aria-hidden="true">
+                        <svg class="icon text-1.25rem mr-0.3125rem" aria-hidden="true">
                             <use xlink:href="#icon-kaoshiyutiaocha"></use>
                         </svg>
                         <span>交卷</span>
@@ -243,13 +243,13 @@ import type { SwipeInstance } from 'vant';
    </div>
 
    <!-- 提示交卷 -->
-   <van-popup v-model:show="showpop" :style="{ padding: '20px' ,width:'80%',height:'24%'}" round :close-on-click-overlay="false"> 
+   <van-popup v-model:show="showpop" :style="{ padding: '1.25rem' ,width:'80%',height:'24%'}" round :close-on-click-overlay="false"> 
         <div class="flex flex-col justify-between w-100% h-100%">
           <span>提示</span>
-          <div class="text-14px">您已经回答了{{testStore.count}}题(共50题),确认交卷？</div>
-          <div class="text-14px ml-140px" >
+          <div class="text-0.875rem">您已经回答了{{testStore.count}}题(共50题),确认交卷？</div>
+          <div class="text-0.875rem ml-8.75rem" >
             <span @click="cancel">继续答题</span>
-            <span class="ml-30px" @click="confirm">交卷</span>
+            <span class="ml-1.875rem" @click="confirm">交卷</span>
           </div>
         </div>
     </van-popup>

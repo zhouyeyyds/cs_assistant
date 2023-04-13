@@ -20,11 +20,11 @@ import { mainstore } from '@/store';
 </script>
 
 <template>
-  <div class="flex flex-wrap h-240px overflow-scroll justify-center">
+  <div class="flex flex-wrap h-15rem overflow-scroll justify-center">
     <span v-for="item,index in list" :key="index" 
-     class="w-40px h-40px rounded-full
-     border-1px border-solid border-[#ccc]
-     m-4px flex justify-center items-center"
+     class="w-2.5rem h-2.5rem rounded-full
+     border-0.0625rem border-solid border-[#ccc]
+     m-0.25rem flex justify-center items-center"
      :class="{'right':store.pannellist[id][index],'false':store.pannellist[id][index]==0,'cur':index==store.index[id]}"
      @click="changeindex(index)"
      >
@@ -47,6 +47,6 @@ import { mainstore } from '@/store';
   }
 
   .cur{
-    border: 1px solid #666;
+    border: .0625rem solid #666;
   }
 </style>

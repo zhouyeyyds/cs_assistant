@@ -35,20 +35,20 @@ import { useTestStore } from "@/store/useTestStore/testStore";
  <!-- 顶部导航 -->
   <Navbar></Navbar>
   <!-- 成绩详情 -->
-  <div class="w-100% h-300px  mt-60px -z-1 f-b-c " :class="{'pass':level!=0,'nopass':level==0}">
+  <div class="w-100% h-18.75rem  mt-3.75rem -z-1 f-b-c " :class="{'pass':level!=0,'nopass':level==0}">
     <el-progress type="dashboard" :percentage="grade" status="success" :color="customColors" class="ma" :indeterminate="true" :duration="5" :width="200">
-        <div class="text-[#fff] f-b-c flex-col text-12px">
+        <div class="text-[#fff] f-b-c flex-col text-0.75rem">
             <span>用时：{{min}}分{{second}}秒</span>
-            <span class="mt-10px text-20px mb-10px">{{ grade}}</span>
+            <span class="mt-0.625rem text-1.25rem mb-0.625rem">{{ grade}}</span>
             <span v-show="level==0">不及格</span>
             <span v-show="level==1">良好</span>
             <span v-show="level==2">优秀</span>
         </div>
     </el-progress>
   </div>
-  <div class="mt-110px f-b-c flex-col h-80px text-13px">
-    <div class="h-44px text-center mb-20px" @click="router.push({name:'curerror'})">查看本次错题</div>
-    <div class="h-44px text-center" @click="goback">退出测验</div>
+  <div class="mt-6.875rem f-b-c flex-col h-5rem text-0.8125rem">
+    <div class="h-2.75rem text-center mb-1.25rem" @click="router.push({name:'curerror'})">查看本次错题</div>
+    <div class="h-2.75rem text-center" @click="goback">退出测验</div>
   </div>
 </template>
 
