@@ -77,7 +77,7 @@ import Dropdown from "@/components/errorbook/Dropdown.vue"
 import {useRoute} from "vue-router"
 import {onMounted, ref,} from "vue"
 import { mainstore } from '@/store/index';
-
+import { Ianswer } from "@/utils/type/answer";
 
         const store=mainstore()
         const route=useRoute()
@@ -85,11 +85,11 @@ import { mainstore } from '@/store/index';
         const id=route.query.id//当前课程号
         const isempty=ref(0)//收藏夹是否为空
         const index=ref(1)
-        const collectList=ref([]);
+        const collectList=ref<Ianswer[]>([]);
 
         const currentPage=ref(1)//当前页号
         const pageSize=10;//页面大小
-        const showlist=ref([]);//当前页要渲染的数组
+        const showlist=ref<Ianswer[]>([]);//当前页要渲染的数组
 
         // 渲染当前页
         const curshow=()=>{
@@ -159,8 +159,8 @@ import { mainstore } from '@/store/index';
 
 <style scoped>
 .collect{
-        margin-top: 55px;
-        height: 90px;
-        margin-left: 60px;
+        margin-top: 3.4375rem;
+        height: 5.625rem;
+        margin-left: 3.75rem;
     }
 </style>

@@ -1,41 +1,21 @@
-/*
- Navicat Premium Data Transfer
-
- Source Server         : test
- Source Server Type    : MySQL
- Source Server Version : 80022 (8.0.22)
- Source Host           : localhost:3306
- Source Schema         : test
-
- Target Server Type    : MySQL
- Target Server Version : 80022 (8.0.22)
- File Encoding         : 65001
-
- Date: 10/04/2023 21:32:18
-*/
+create database zhouye_yyds;
+use zhouye_yyds;
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
--- ----------------------------
--- Table structure for course
--- ----------------------------
-DROP TABLE IF EXISTS `course`;
 CREATE TABLE `course`  (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `text` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `answer` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `a` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `b` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `c` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `d` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `cid` int NULL DEFAULT (1),
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 505 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+  `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `text` varchar(255) CHARACTER SET utf8mb4 ,
+  `answer` varchar(255) CHARACTER SET utf8mb4 ,
+  `a` varchar(255) CHARACTER SET utf8mb4 ,
+  `b` varchar(255) CHARACTER SET utf8mb4 ,
+  `c` varchar(255) CHARACTER SET utf8mb4 ,
+  `d` varchar(255) CHARACTER SET utf8mb4 ,
+  `cid` int,
+)
 
--- ----------------------------
--- Records of course
--- ----------------------------
+
 INSERT INTO `course` VALUES (1, 'CPU响应中断的时间是_____。', 'c', '中断源提出请求；', '取指周期结束；', '执行周期结束；', '间址周期结束。', 1);
 INSERT INTO `course` VALUES (2, '常用的虚拟存储器寻址系统由______两级存储器组成。', 'a', '主存－辅存；', 'Cache－主存；', 'Cache－辅存；', '主存—硬盘。', 1);
 INSERT INTO `course` VALUES (3, 'DMA访问主存时，让CPU处于等待状态，等DMA的一批数据访问结束后，CPU再恢复工作，这种情况称作_____。', 'a', '停止CPU访问主存；', '周期挪用；', 'DMA与CPU交替访问；', 'DMA。', 1);
@@ -442,19 +422,12 @@ INSERT INTO `course` VALUES (411, '常对数组进行两种基本操作是（   
 INSERT INTO `course` VALUES (412, '对一些特殊矩阵采用压缩存储的目的主要是为了（   ）。', 'd', '表达变得简单', '对矩阵元素的存取变得简单', '去掉矩阵中的多余元素', '减少不必要的存储空间的开销', 4);
 INSERT INTO `course` VALUES (413, '广义表A=((a),a)的表头是（   ）。', 'b', 'a', '(a)', 'b', '((a))', 4);
 
--- ----------------------------
--- Table structure for suggestion
--- ----------------------------
-DROP TABLE IF EXISTS `suggestion`;
+
 CREATE TABLE `suggestion`  (
-  `suggestion` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '用户的反馈和建议',
+  `suggestion` varchar(255) CHARACTER SET utf8mb4 ,
   `id` int NOT NULL AUTO_INCREMENT,
-  `date` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+  `date` varchar(255) CHARACTER SET utf8mb4 ,
+  PRIMARY KEY (`id`) 
+) 
 
--- ----------------------------
--- Records of suggestion
--- ----------------------------
 
-SET FOREIGN_KEY_CHECKS = 1;

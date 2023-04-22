@@ -1,4 +1,6 @@
 import { defineStore } from "pinia";
+import {Ianswer,Istatus} from "@/utils/type/answer"
+
 export const useTestStore= defineStore("test",{
   state:()=>{
     return{
@@ -6,10 +8,10 @@ export const useTestStore= defineStore("test",{
       falsenum:0,//答错的题数
       count:0,//已经答题的数目
       index:0,//题目的索引
-      statuslist:[],//题目答题状态的数组
-      answerlist:[],//题目是否被答过的数组
-      pannellist:[],//题板的状态
-      errorList:[],//当此的错题
+      statuslist:[] as Istatus[],//题目答题状态的数组
+      answerlist:[] as number[],//题目是否被答过的数组
+      pannellist:[] as number[],//题板的状态
+      errorList:[] as Ianswer[],//当此的错题
 
       // 最近七次的模拟成绩
       pocoGrade:[0,0,0,0,0,0,0,],

@@ -14,7 +14,7 @@ import { useTestStore } from "@/store/useTestStore/testStore";
 
         const titlename:string[] = ["计组", "计网", "操作系统", "数据结构"];
         const myColor:string[] = ["#1089E7", "#F57474", "#56D0E3", "#F8B448"];
-        const index:Ref<number>=ref(0)
+        const index=ref(0)
         const avg:string[]=[testStore.pocoAvg,testStore.cnetAvg,testStore.osAvg,testStore.dsAvg]
 
         // 初始化图表
@@ -177,7 +177,7 @@ import { useTestStore } from "@/store/useTestStore/testStore";
 <template>
     <!-- 顶部导航 -->
   <Navbar></Navbar>
-  <div class="mt-62px  shadow-sm" >
+  <div class="mt-72px  shadow-sm" >
         <van-tabs v-model:active="index"  swipeable  lazy-render>
           <van-tab title="各科成绩" class="my-15px px-20px"/>
           <van-tab title="平均分" class="my-15px px-20px"/>

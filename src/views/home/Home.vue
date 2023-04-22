@@ -1,80 +1,69 @@
+<script lang="ts" setup>
+import TopSearch from "@/components/home/TopSearch.vue";
+import Tabbar from "@/components/tabbar/Tabbar.vue"
+import { onMounted,ref } from "vue";
+import { useRouter } from "vue-router";
+import {useHome} from "@/utils/home/useHome"
+import type { TabsInstance } from 'vant';
+import type { SwipeInstance } from 'vant';
+
+
+    const router=useRouter();
+
+    const tabsRef = ref<TabsInstance>();//获取标签栏的实例对象
+    const swipeRef = ref<SwipeInstance>();//获取轮播图的实例对象
+
+    const {data,getAllList,active,tabs,loading,onRefresh}=useHome();// 引入hook
+
+    const swipeChange=(index:number)=> tabsRef.value?.scrollTo(index);
+
+    const tabChange=()=> swipeRef.value?.swipeTo(active.value);
+    
+    onMounted(()=>{
+      getAllList()// 访问数据库 请求数据
+    })
+</script>
+
 <template>
-    <!-- 顶部开始 -->
-    <header position-fixed left-0 top-0 flex justify-between items-center h-60px  p-x-10px bg-white border-b class="border-b-[#efefef] w-100%">
-      <!-- 搜索框 -->
-      <van-search
-      shape="round"
-      placeholder="请输入搜索关键词"
-      @click="router.push({name:'search'})"
-      input-align="center"
-      class="w-100%"
-    />
-    </header>
-    <!-- 顶部结束 -->
+    <!-- 顶部搜索框 -->
+    <TopSearch></TopSearch>
+    <!-- 下拉刷新 -->
+    <van-pull-refresh v-model="loading" @refresh="onRefresh" class="mt-70px mb-40px"  :animation-duration="700" style="min-height: 85vh;">
 
-    <!-- 标签栏开始 -->
-    <div class="mt-60px mb-40px shadow-lg">
-      <van-tabs v-model:active="active" swipeable  lazy-render >
-        <van-tab title="计组" class="my-15px px-20px">
-          <img src="@/assets/img/jz.png" class="w-100% h-190px rounded-10px">
-        </van-tab>
-        <van-tab title="计网" class="my-15px px-20px">
-          <img src="@/assets/img/jw.jpg" class="w-100% h-190px rounded-10px">
-        </van-tab>
-        <van-tab title="操作系统" class="my-15px px-20px">
-          <img src="@/assets/img/czxt.jpg" class="w-100% h-190px rounded-10px">
-        </van-tab>
-        <van-tab title="数据结构" class="my-15px px-20px">
-          <img src="@/assets/img/sjjg.jpg" class="w-100% h-190px rounded-10px">
-        </van-tab>
-      </van-tabs>
-    </div>
-    <!-- 标签栏结束 -->
+        <!-- 标签栏 -->
+        <van-tabs v-model:active="active" scrollspy sticky ref="tabsRef" @click-tab="tabChange" class="mb-10px">
+          <van-tab v-for="item,index in tabs" :title="item" :key="index">
+          </van-tab>
+        </van-tabs>
 
-    <!-- 功能模块开始 -->
-    <div class="flex justify-around items-center flex-wrap text-1rem">
-      <div class=" w-9.375rem h-6.25rem bg-white rounded-0.625rem  center lib" @click="router.push({name:'lib'})">
-        浏览题库
-      </div>
-      <div class="w-9.375rem h-6.25rem bg-white rounded-0.625rem  center bookmark" @click="router.push({name:'collect'})">
-        收藏夹
-      </div>
-      <div class="w-9.375rem h-6.25rem bg-white rounded-0.625rem  center mt-1.25rem errorbook" @click="router.push({name:'errorbook'})">
-        错题本
-      </div>
-      <div class="w-9.375rem h-6.25rem bg-white rounded-0.625rem  center mt-1.25rem study" @click="router.push({name:'analysis'})">
-        成绩分析
-      </div>
-    </div>
-    <!-- 功能模块结束 -->
+        <!-- 轮播图 -->
+        <van-swipe class="shadow-lg" :autoplay="3000" indicator-color="white" @change="swipeChange" ref="swipeRef">
+          <van-swipe-item>
+            <img src="@/assets/img/jz.png" class="w-100% h-250px rounded-10px">
+          </van-swipe-item>
+          <van-swipe-item>
+            <img src="@/assets/img/jw.jpg" class="w-100% h-250px rounded-10px">
+          </van-swipe-item>
+          <van-swipe-item>
+            <img src="@/assets/img/czxt.jpg" class="w-100% h-250px rounded-10px">
+          </van-swipe-item>
+          <van-swipe-item>
+            <img src="@/assets/img/sjjg.jpg" class="w-100% h-250px rounded-10px">
+          </van-swipe-item>
+        </van-swipe>
+
+        <!-- 功能模块 -->
+        <div class="flex justify-around items-center flex-wrap text-1rem mt-90px">
+          <div class=" w-9.375rem h-6.25rem bg-white rounded-0.625rem  center"  v-for="item,index in data" :key="index" :class="item.key" @click="router.push({name:item.key})">
+            {{ item.name }}
+          </div>
+        </div>
+    </van-pull-refresh>
+  
     <!-- 底部导航 -->
     <Tabbar></Tabbar>
 </template>
 
-<script lang="ts" setup>
-import Tabbar from "@/components/tabbar/Tabbar.vue"
-import { ref,onMounted } from "vue";
-import {useRouter } from "vue-router";
-import { mainstore } from "@/store";
-import {getlist}  from "@/request/api/test"  //请求题目的接口
-
-
-      const router=useRouter();
-      const store=mainstore();
-
-      const active=ref(0)
-
-      onMounted(async ()=>{
-        // 访问数据库 请求数据
-            if(store.pocoList.length==0){
-              store.pocoList=(await getlist(1)).data;
-              store.cnetList=(await getlist(2)).data;
-              store.osList=(await getlist(3)).data;
-              store.dsList=(await getlist(4)).data;
-            }
-      })
-
-</script>
 
 <style scoped>
 .lib{
@@ -82,7 +71,7 @@ import {getlist}  from "@/request/api/test"  //请求题目的接口
   background-size: auto;
   background-size: cover;
 }
-.bookmark{
+.collect{
   background: url("@/assets/img/collect.png")  center no-repeat ;
   background-size: auto;
   background-size: cover;
@@ -91,10 +80,12 @@ import {getlist}  from "@/request/api/test"  //请求题目的接口
   background: url("@/assets/img/collect.png")  center no-repeat ;
   background-size: auto;
   background-size: cover;
+  margin-top: 2.25rem;
 }
-.study{
+.analysis{
   background: url("@/assets/img/study.png")  center no-repeat ;
   background-size: auto;
   background-size: cover;
+  margin-top: 2.25rem;
 }
 </style>

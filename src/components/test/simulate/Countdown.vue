@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-
-        const time = ref(45 * 60 * 1000);
+    const time = ref(45 * 60 * 1000);
 </script>
 
 <template>

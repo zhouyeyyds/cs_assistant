@@ -4,6 +4,7 @@ import { useTestStore } from "@/store/useTestStore/testStore";
 import { mainstore } from "@/store";
 import { showToast } from 'vant';
 import {pagination} from '@/utils/pagination/pagination'
+import { Ianswer } from "@/utils/type/answer";
 
         const router=useRouter()
         const store=mainstore()
@@ -29,7 +30,7 @@ import {pagination} from '@/utils/pagination/pagination'
         }
 
         // 将添加到收藏夹中的方法封装
-        const addCollectlist=(list:any,index:number)=>{
+        const addCollectlist=(list:Ianswer[],index:number)=>{
                 let flag=true;
                 list.forEach(item => {//加入到错题本之前先遍历一下这个数组 判断是否已经被添加过 
                     if(item.id==testStore.errorList[index].id){
@@ -58,13 +59,14 @@ import {pagination} from '@/utils/pagination/pagination'
 
 <template>
     <!-- 顶部导航 -->
-    <div class="fixed left-0 top-0 flex items-center p-y-0 p-x-0.625rem w-full h-3.75rem bg-white text-0.9375rem z-999">
+    <div class="w-100% h-11px fixed left-0 top-0  bg-[#fff] z-9"></div>
+    <div class="fixed left-0 top-10px flex items-center p-y-0 p-x-0.625rem w-full h-3.75rem bg-white text-0.9375rem z-999">
         <van-icon name="arrow-left" class="back" @click="router.go(-1)"/>
         <span class="m-l-30%">错题回顾</span>
     </div>
     <!-- 题目的渲染 -->
-    <div class="mt-3.875rem mb-3.125rem text-16px f-b-c flex-col mb-1.25rem text-0.875rem">
-        <div class="absolute left-0 top-3.75rem text-0.8125rem h-1.25rem w-full bg-[#eee] text-center overscroll-contain z-10 ">
+    <div class="mt-95px mb-3.125rem text-16px f-b-c flex-col mb-1.25rem text-0.875rem">
+        <div class="fixed left-0 top-74px text-0.8125rem h-1.25rem w-full bg-[#eee] text-center overscroll-contain z-10 ">
             本次错题数:<span class="text-[#35a1fc]">{{ testStore.errorList.length }}</span>
         </div>
         <van-swipe-cell class="mt-0.9375rem bg-white  f-b-c flex-col p-0.625rem rounded-0.625rem w-90%" v-for="item,index in showlist" :key="item.id">

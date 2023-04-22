@@ -1,5 +1,5 @@
 <template>
-  <van-dropdown-menu class="fixed w-100% z-9 left-0 top-3.75rem">
+  <van-dropdown-menu class="fixed w-100% z-9 left-0 top-70px">
         <van-dropdown-item :title="arr[index-1]" ref="dropdownItemRef">
             <ul class="f-b-c h-2.5rem p-x-0.9375rem m-y-0.625rem text-0.875rem dropdown">
             <li :class="{'active':id==1}" @click="changeactive(1,$event)">计组</li>

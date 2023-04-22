@@ -1,13 +1,13 @@
 <template>
-  <div class="f-b-c text-0.875rem px-0.625rem ">
+  <div class="f-b-c text-0.875rem px-0.625rem">
         <div class="flex items-center -ml-2.1875rem">
             <li class="flex flex-col items-center ml-0.625rem w-3.75rem text-0.75rem" @click="router.push({name:'collect'})">
-            <span>{{ collectcount }}</span>
-            <span>收藏</span>
+                <span>{{ collectcount }}</span>
+                <span>收藏</span>
             </li>
             <li class="flex flex-col items-center ml-0.625rem w-3.75rem text-0.75rem" @click="router.push({name:'errorbook'})">
-            <span>{{ falsecount }}</span>
-            <span>错题</span>
+                <span>{{ falsecount }}</span>
+                <span>错题</span>
             </li>
         </div>
         <!-- 设置按钮 -->

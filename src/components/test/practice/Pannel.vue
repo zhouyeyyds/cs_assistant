@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { ref,onMounted ,} from 'vue';
 import { mainstore } from '@/store';
-
+import { Ianswer } from '@/utils/type/answer';
 
       const store=mainstore();
       const props=defineProps(['changeindex','id'])
 
-      const list=ref([])//练习题目的数组
+      const list=ref<Ianswer[]>([])//练习题目的数组
 
       // 改变当前的题板序号
       const changeindex=(index:number)=>{

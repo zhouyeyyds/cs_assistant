@@ -35,7 +35,7 @@ import { useTestStore } from "@/store/useTestStore/testStore";
  <!-- 顶部导航 -->
   <Navbar></Navbar>
   <!-- 成绩详情 -->
-  <div class="w-100% h-18.75rem  mt-3.75rem -z-1 f-b-c " :class="{'pass':level!=0,'nopass':level==0}">
+  <div class="w-100% h-18.75rem  mt-70px -z-1 f-b-c " :class="{'pass':level!=0,'nopass':level==0}">
     <el-progress type="dashboard" :percentage="grade" status="success" :color="customColors" class="ma" :indeterminate="true" :duration="5" :width="200">
         <div class="text-[#fff] f-b-c flex-col text-0.75rem">
             <span>用时：{{min}}分{{second}}秒</span>

@@ -74,10 +74,10 @@
 <script setup lang="ts">
 import Navbar from "@/components/errorbook/Navbar.vue"
 import Dropdown from "@/components/errorbook/Dropdown.vue"
-import {useRouter,useRoute} from "vue-router"
+import {useRoute} from "vue-router"
 import {onMounted, ref,} from "vue"
 import { mainstore } from '@/store/index';
-
+import {Ianswer} from "@/utils/type/answer"
 
       const store=mainstore()
       const route=useRoute()
@@ -85,11 +85,11 @@ import { mainstore } from '@/store/index';
       const id=route.query.id//当前课程号
       const isempty=ref(0)//是否为空
       const index=ref(1)
-      const errorList=ref([]);
+      const errorList=ref<Ianswer[]>([]);
 
       const currentPage=ref(1)//当前页号
       const pageSize=10;//页面大小
-      const showlist=ref([]);//当前页要渲染的数组
+      const showlist=ref<Ianswer[]>([]);//当前页要渲染的数组
 
       // 渲染当前页
       const curshow=()=>{

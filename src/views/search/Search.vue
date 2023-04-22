@@ -1,10 +1,9 @@
 <template>
 <div class="search">
     <!-- 头部导航 -->
-    <div class="fixed left-0 top-0 w-100% h-3.75rem text-0.8125rem px-0.625rem bg-[#fff] f-b-c  z-10">
-        <span class="back iconfont icon-arrow-left-bold" @click="back"></span>
+    <div class="fixed left-0 top-0 w-100% h-70px pt-10px text-0.8125rem px-0.625rem bg-[#fff] f-b-c  z-10">
         <!--左边返回按钮 -->
-
+        <span class="back iconfont icon-arrow-left-bold" @click="back"></span>
         <!-- 搜索框 -->
         <van-search
         v-model.trim="key"
@@ -19,31 +18,31 @@
     </div>
 
     <!-- 搜索历史 -->
-    <div class="history" v-show="!issearch">
-        <div class="w-100% mt-4.375rem p-0.625rem mb-0.625rem border-b-solid border-b-[#eee] border-0.0625rem f-b-c">
-            <p>历史搜索</p>
-            <van-icon name="delete-o" class="w-2.75rem h-2.75rem delete" @click="deletehistorylist"/>
+    <div v-show="!issearch">
+        <div class="w-100% mt-80px p-0.625rem mb-0.625rem border-b-solid border-b-[#eee] border-0.0625rem f-b-c">
+            <p class="text-lg">历史搜索</p>
+            <van-icon name="delete-o" class="w-2.75rem h-2.75rem delete" @click="isshowtip=true"/>
             <!-- 清空 -->
             <van-popup v-model:show="isshowtip" round>
                 <div class="w-15.625rem h-9.375rem flex-col p-0.625rem text-0.875rem">
                     <p class="mb-5rem">确定清空全部历史记录 ?</p>
                     <span class="ml-7.5rem">
-                        <span @click="cancle" class="mr-1.875rem">取消</span>
+                        <span @click="isshowtip=false" class="mr-1.875rem">取消</span>
                         <span @click="clearall" class="text-[#35a1fc]">清空</span>
                     </span>
                 </div>
             </van-popup>
         </div>
-        <!-- 每一个历史记录 -->
+        <!-- 历史记录 -->
         <div>
-            <span v-for="item,index in historylist" :key="index" @click="search(item)" class="inline-block bg-[#fff] rounded-full m-0.3125rem px-0.9375rem text-0.8125rem h-1.875rem item">
+            <span v-for="item,index in store.searchHistory" :key="index" @click="search(item)" class="inline-block bg-[#fff] rounded-full m-0.3125rem px-0.9375rem text-0.8125rem h-1.875rem item">
                 {{item}}
             </span>
         </div>
     </div>
 
     <!-- 搜索结果 -->
-    <div class="mt-3.75rem text-16px mb-3.125rem f-b-c flex-col mb-1.25rem text-0.875rem" v-show="issearch">
+    <div class="mt-70px text-16px mb-3.125rem f-b-c flex-col mb-1.25rem text-0.875rem" v-show="issearch">
         <div class="fixed text-0.8125rem h-1.25rem w-full bg-[#eee] text-center overscroll-contain z-10">当前结果共有<span class="text-[#35a1fc]">{{searchres.length}}</span>条</div>
         <van-swipe-cell class="mt-0.9375rem bg-white  f-b-c flex-col p-0.625rem rounded-0.625rem w-90%" v-for="item,index in showlist" :key="item.id">
             <template #right>
@@ -113,150 +112,135 @@
 </div>
 </template>
   
-  <script setup lang="ts">
-  import {onMounted, Ref, ref} from "vue"
-  import { useRouter } from "vue-router";
-  import { mainstore } from '@/store';
-  import { showToast } from 'vant';
+<script setup lang="ts">
+import {ref} from "vue"
+import { useRouter } from "vue-router";
+import { mainstore } from '@/store';
+import { showToast } from 'vant';
+import { Ianswer } from "@/utils/type/answer";
 
+    const router=useRouter();
+    const store=mainstore();
 
-        const router=useRouter();
-        const store=mainstore();
+    const key=ref("")//搜索输入的值
+    const searchres=ref<Ianswer[]>([])//搜索的结果
+    const issearch=ref(false)//是否正在已经搜索
+    const isempty=ref(true)//搜索记录是否为空
+    const isshowtip=ref(false)//是否显示提示弹窗
 
-        const key=ref("")//搜索输入的值
-        const searchres:Ref<string[]>=ref([])//搜索的结果
-        const issearch=ref(false)//是否正在已经搜索
-        const isempty=ref(true)//搜索记录是否为空
-        const isshowtip=ref(false)//是否显示提示弹窗
-        const historylist=ref([])//搜索历史
-
-        // 点击搜索框进行手术
-        const find=()=>{
-            if(key.value!=''){// 判读输入的字符串是否为空 如果空 就什么都不执行
-                historylist.value.push(key.value)
-                historylist.value=[...new Set(historylist.value)]// 数组去重
-                localStorage.setItem("historylist",JSON.stringify(historylist.value));
-                searchapi();
-                issearch.value=true;
+    // 点击搜索框进行手术
+    const find=()=>{
+        if(key.value!=''){// 判读输入的字符串是否为空 如果空 就什么都不执行
+            if(!store.searchHistory.includes(key.value)){
+                store.searchHistory.unshift(key.value)
             }
-        }
-
-        // 点击搜索记录中的某一项进行搜索
-        const search=(val:string)=>{
-            key.value=val;
-            searchapi()
+            searchapi();
             issearch.value=true;
         }
+    }
 
-        // 执行搜索 
-        const searchapi=()=>{
-            let list=[...store.pocoList,...store.cnetList,...store.osList,...store.dsList]
-            searchres.value=list.filter(item=>item.text.indexOf(key.value)!=-1);//过滤筛选
-            curshow()
+    // 点击搜索记录中的某一项进行搜索
+    const search=(val:string)=>{
+        key.value=val;
+        searchapi()
+        issearch.value=true;
+    }
+
+    // 执行搜索 
+    const searchapi=()=>{
+        let list=[...store.pocoList,...store.cnetList,...store.osList,...store.dsList]
+        searchres.value=list.filter(item=>item.text.indexOf(key.value)!=-1);//过滤筛选
+        curshow()
+    }
+
+    // 返回上一个页面
+    const back=()=>{
+        if(!issearch.value)// 如果不是正在搜索中 就回退到上一个页面
+        router.go(-1)
+
+        issearch.value=false;
+        key.value='';//并且将输入框的值清空
+    }
+
+    // 确认清空
+    const clearall=()=>{
+        isshowtip.value=false;// 点击确认 提示框消失 
+        store.searchHistory=[]
+        isempty.value=true;// 搜索历史列表为空
+    }
+
+    const currentPage=ref(1)//当前页号
+    const pageSize=10;//页面大小
+    const showlist=ref<Ianswer[]>([]);//当前页要渲染的数组
+
+    // 渲染当前页
+    const curshow=()=>{
+        let begin=(currentPage.value-1)*pageSize;
+        let end=currentPage.value*pageSize;
+        showlist.value=searchres.value.slice(begin,end)
+    }
+
+    // 切换页的时候 重新渲染当前页
+    const changepage=()=>{
+        curshow()
+    }
+
+    // 收藏
+    const collect=(index:number)=>{
+        if(searchres.value[index].cid==1){
+            addCollectlist(store.pocoCollectlist,index)
         }
-
-        // 返回上一个页面
-        const back=()=>{
-            if(!issearch.value)// 如果不是正在搜索中 就回退到上一个页面
-            router.go(-1)
-
-            issearch.value=false;
-            key.value='';//并且将输入框的值清空
+        if(searchres.value[index].cid==2){
+            addCollectlist(store.cnetCollectlist,index)
         }
-
-        // 清空所有历史记录
-        const deletehistorylist=()=>{
-            isshowtip.value=true// 点击删除的时候 弹出提示框
+        if(searchres.value[index].cid==3){
+            addCollectlist(store.osCollectlist,index)
         }
-
-        // 取消删除
-        const cancle=()=>{
-            isshowtip.value=false;// 点击取消 提示框消失
+        if(searchres.value[index].cid==4){
+            addCollectlist(store.dsCollectlist,index)
         }
+    }
 
-        // 确认清空
-        const clearall=()=>{
-            isshowtip.value=false;// 点击确认 提示框消失 
-            historylist.value=[];
-            localStorage.setItem("historylist",JSON.stringify(historylist.value));
-            isempty.value=true;// 搜索历史列表为空
-        }
-
-        const currentPage=ref(1)//当前页号
-        const pageSize=10;//页面大小
-        const showlist=ref([]);//当前页要渲染的数组
-
-        // 渲染当前页
-        const curshow=()=>{
-            let begin=(currentPage.value-1)*pageSize;
-            let end=currentPage.value*pageSize;
-            showlist.value=searchres.value.slice(begin,end)
-        }
-
-        // 切换页的时候 重新渲染当前页
-        const changepage=()=>{
-            curshow()
-        }
-
-        // 收藏
-        const collect=(index:number)=>{
-            if(searchres.value[index].cid==1){
-                addCollectlist(store.pocoCollectlist,index)
-            }
-            if(searchres.value[index].cid==2){
-                addCollectlist(store.cnetCollectlist,index)
-            }
-            if(searchres.value[index].cid==3){
-                addCollectlist(store.osCollectlist,index)
-            }
-            if(searchres.value[index].cid==4){
-                addCollectlist(store.dsCollectlist,index)
-            }
-        }
-
-        // 将添加到收藏夹中的方法封装
-        const addCollectlist=(list:[],index:number)=>{
-                let flag=true;
-                list.forEach(item => {//加入到错题本之前先遍历一下这个数组 判断是否已经被添加过 
-                    if(item.id==searchres.value[index].id){
-                        flag=false;
-                    }
-                });
-                if(flag){//如果没有被收藏过
-                list.push(searchres.value[index])
-                setTimeout(() => {
-                        showToast({
-                        message:"收藏成功",
-                        position:"bottom"
-                    })
-                }, 200);
-                }else{//如果已经被收藏过
-                setTimeout(() => {
-                        showToast({
-                        message:"已经收藏过啦",
-                        position:"bottom"
-                    })
-                }, 200);
+    // 将添加到收藏夹中的方法封装
+    const addCollectlist=(list:Ianswer[],index:number)=>{
+            let flag=true;
+            list.forEach(item => {//加入到错题本之前先遍历一下这个数组 判断是否已经被添加过 
+                if(item.id==searchres.value[index].id){
+                    flag=false;
                 }
+            });
+            if(flag){//如果没有被收藏过
+            list.push(searchres.value[index])
+            setTimeout(() => {
+                    showToast({
+                    message:"收藏成功",
+                    position:"bottom"
+                })
+            }, 200);
+            }else{//如果已经被收藏过
+            setTimeout(() => {
+                    showToast({
+                    message:"已经收藏过啦",
+                    position:"bottom"
+                })
+            }, 200);
             }
-
-        // 搜索结果高亮
-        const highlight=(str:string)=>{
-            let reg=new RegExp(key.value.trim(),'g');//需要对输入的关键字去除首尾的空格
-            return str.replace(reg,`<span class="text-[#35a1fc]">${key.value.trim()}</span>`)
         }
 
-        onMounted(()=>{
-            historylist.value=JSON.parse(localStorage.getItem("historylist"))//挂载后获取搜索历史
-        })
-  </script>
+    // 搜索结果高亮
+    const highlight=(str:string)=>{
+        let reg=new RegExp(key.value.trim(),'g');//需要对输入的关键字去除首尾的空格
+        return str.replace(reg,`<span class="text-[#35a1fc]">${key.value.trim()}</span>`)
+    }
+
+</script>
   
 <style scoped>
 
 .collect{
-    margin-top: 55px;
-    height: 90px;
-    margin-left: 60px;
+    margin-top: 3.4375rem;
+    height: 5.625rem;
+    margin-left: 3.75rem;
 }
 .delete{
     font-size: 4.8vw;

@@ -1,5 +1,6 @@
 <template>
              <!-- 顶部导航 -->
+        <div class="w-100% h-11px bg-[#fff] fidex left-0 top-0"></div>
          <div class="nav flex justify-between items-center">
              <span @click="router.go(-1)" class="iconfont icon-arrow-left-bold back"></span>
              <van-tabs type="card" class="tab" v-model:active="model" @click-tab="changemodel">
@@ -40,14 +41,14 @@
  
          <!-- 下方题目卡片 -->
          <div class="card">
-             <van-swipe :loop="false" :width="375"   :show-indicators="false" touchable lazy-render ref="swipe" @change="onChange"> 
+             <van-swipe :loop="false"    :show-indicators="false" touchable lazy-render ref="swipe" @change="onChange"> 
                  <van-swipe-item class="item" v-for="item,index in list" :key="item.id">
                          <div class="li">
                              <van-tag type="primary">单选</van-tag>
                              <p>{{index+1}} . {{ item.text }}</p>
                              <div class="choice flex justify-between items-center">
                                  <!-- 选项a -->
-                                 <div class="flex justify-between items-center" @click="test('a',item. answer)">
+                                 <div class="flex justify-between items-center w-100%" @click="test('a',item. answer)">
                                      <!-- 基础图标 -->
                                      <span class="round" v-show="status.a==0">A</span>
                                      <!-- 选择正确后的图标 -->
@@ -61,7 +62,7 @@
                                      <span class="flex-1">{{ item.a }}</span>
                                  </div>
                                  <!-- 选项b -->
-                                 <div class="flex justify-between items-center"  @click="test('b',item. answer)">
+                                 <div class="flex justify-between items-center w-100%"  @click="test('b',item. answer)">
                                      <span class="round"  v-show="status.b==0">B</span>
                                      <svg class="icon" aria-hidden="true" v-show="status.b==1">
                                          <use xlink:href="#icon-gouxuan"></use>
@@ -72,7 +73,7 @@
                                      <span class="flex-1">{{ item.b }}</span>
                                  </div>
                                  <!-- 选项c -->
-                                 <div class="flex justify-between items-center" @click="test('c',item. answer)">
+                                 <div class="flex justify-between items-center w-100%" @click="test('c',item. answer)">
                                      <span class="round"  v-show="status.c==0">C</span>
                                      <svg class="icon" aria-hidden="true" v-show="status.c==1">
                                          <use xlink:href="#icon-gouxuan"></use>
@@ -83,7 +84,7 @@
                                      <span class="flex-1">{{ item.c }}</span>
                                  </div>
                                  <!-- 选项d -->
-                                 <div class="flex justify-between items-center" @click="test('d',item. answer)">
+                                 <div class="flex justify-between items-center w-100%" @click="test('d',item. answer)">
                                      <span class="round"  v-show="status.d==0">D</span>
                                      <svg class="icon" aria-hidden="true" v-show="status.d==1">
                                          <use xlink:href="#icon-gouxuan"></use>
@@ -138,12 +139,12 @@
  
          <!-- 重做后显示的弹出层 -->
          <van-popup v-model:show="showpop" round>
-             <div class="pop">
+             <div class="flex-col w-300px h-200px p-20px text-18px ">
                  <p>确认重新练习吗 ?</p>
-                 <span class="choice">
+                 <div class="mt-110px ml-130px">
                      <span @click="showpop=false">取消</span>
-                     <span @click="certify">确认</span>
-                 </span>
+                     <span @click="certify" class="text-[#35a1fc] ml-40px">确认</span>
+                 </div>
              </div>
          </van-popup>
  </template>
@@ -409,7 +410,7 @@
      .nav{
          position: fixed;
          left: 0;
-         top: 0;
+         top: 11px;
          width: 100%;
          height: 60px;
          padding: 10px;
@@ -520,26 +521,4 @@
          .total{
              color: #ccc;
          }
-
- 
-     .pop{
-         width: 70vw;
-         height: 100px;
-         padding: 2.667vw;
-         font-size: 3.2vw;
-         color: rgb(168, 166, 166);
- 
-         p{
-             margin-bottom: 45px;
-         }
- 
-         .choice{
-             margin-left:150px;
-             color: red;
- 
-             span:first-child{
-                 margin-right: 30px;
-             }
-         }
-     }
  </style>

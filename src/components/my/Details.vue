@@ -47,7 +47,7 @@ import {showToast} from "vant"
 </script>
 
 <template>
-  <div class=" bg-[#fff] rounded-0.625rem mt-10.625rem mx-0.625rem mb-0.625rem text-0.875rem">
+  <div class=" bg-[#fff] rounded-0.625rem mt-11.625rem mx-0.625rem mb-0.625rem text-0.875rem scroll-auto">
       <li class="f-b-c px-0.625rem w-100% h-3.125rem" @click="router.push({name:'about'})">
         <div class="f-b-c">
           <span class="iconfont icon-guanyuwomen mr-0.3125rem"></span>

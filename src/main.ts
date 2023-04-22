@@ -5,7 +5,7 @@ import store from './store/Piniaconfig'
 
 // 引入svg图
 import 'virtual:svg-icons-register'
-// 导入Unocss
+// 引入Unocss
 import 'virtual:uno.css'
 // 引入动画库 animate.css
 import 'animate.css';
@@ -13,7 +13,7 @@ import 'animate.css';
 import { Tabbar, TabbarItem,Search,Tab, Tabs ,Empty,Icon ,Switch ,
          Circle ,Tag,Swipe, SwipeItem ,Popup,Toast,SwipeCell,
          Button,DropdownMenu, DropdownItem ,CountDown ,Collapse, 
-         CollapseItem ,BackTop,Pagination ,ShareSheet,} from 'vant';
+         CollapseItem ,BackTop,Pagination ,ShareSheet,PullRefresh } from 'vant';
 // 引入element-plus
 import ElementPlus from 'element-plus'
 // 引入公共样式的css
@@ -22,10 +22,8 @@ import '@/assets/css/base.css'
 import "@/assets/font/iconfont.css"
 import "@/assets/font/iconfont.js"
 import 'element-plus/dist/index.css'
-
 // 导入rem布局
 import "@/assets/rem/flexible"
-
 
 const app=createApp(App)
 
@@ -56,6 +54,7 @@ app.use(Collapse)
 app.use(BackTop )
 app.use(Pagination )
 app.use(ShareSheet )
+app.use(PullRefresh )
 
 
 app.mount('#app')

@@ -1,9 +1,6 @@
 <template>
-    <div class="fixed left-0 top-0 flex items-center p-y-0 p-x-0.625rem w-full h-3.75rem bg-white text-0.9375rem">
-        <van-icon name="arrow-left" class="back"  @click="router.go(-1)"/>
-        <span class="m-l-30%">设置</span>
-    </div>
-    <div class="mt-3.875rem text-0.875rem p-0.625rem rounded-0.625rem bg-white">
+    <Navbar></Navbar>
+    <div class="mt-82px text-0.875rem p-0.625rem rounded-0.625rem bg-white">
         <ul>
             <li f-b-c h-2.8125rem class="mb-0.625rem">
                 <div class="f-b-c">
@@ -35,7 +32,7 @@
             <span class="text-0.875rem">确认清空所有收藏内容和已回答答案？(此操作不可撤销)</span>
             <div class="text-0.875rem ml-8.125rem" >
                 <span @click="showpop=false">取消</span>
-                <span class="ml-1.875rem text-red" @click="clearAllData">确认</span>
+                <span class="ml-1.875rem text-[#35a1fc]" @click="clearAllData">确认</span>
             </div>
         </div>
     </van-popup>
@@ -54,13 +51,12 @@
 
 <script setup lang="ts">
 import {ref} from "vue"
-import { useRouter } from 'vue-router';
+import Navbar from "@/components/setting/Navbar.vue";
 import { mainstore } from "@/store";
 import { useTestStore } from "@/store/useTestStore/testStore";
 import {showToast} from "vant"
 
-
-        const router=useRouter();
+        
         const store=mainstore();
         const testStore=useTestStore()
 

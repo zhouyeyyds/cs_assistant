@@ -36,7 +36,11 @@
   
   <style  scoped>
     .icon{
-      font-size: 25.0016px;
+      font-size: 25px;
+    }
+
+    .van-tabbar{
+      height: 60px;
     }
   
   </style>

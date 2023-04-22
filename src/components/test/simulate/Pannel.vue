@@ -2,13 +2,13 @@
 import { ref,onMounted ,} from 'vue';
 import { mainstore } from '@/store';
 import { useTestStore } from '@/store/useTestStore/testStore';
-
+import {Ianswer} from "@/utils/type/answer"
 
       const store=mainstore();
       const testStore=useTestStore();
       const props=defineProps(['changeCurindex'])
 
-      const simulatelist=ref([])//仿真题目的数组
+      const simulatelist=ref<Ianswer[]>([])//仿真题目的数组
 
       // 改变当前的题板序号
       const changeindex=(index:number)=>{

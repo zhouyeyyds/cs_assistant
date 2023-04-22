@@ -2,10 +2,9 @@
     <!-- 顶部导航 -->
     <Navbar></Navbar>
     
-    <div class="mt-6.75rem">
+    <div class="mt-118px">
         <!-- 下拉菜单 -->
         <Dropdown  :id="Number(id)" @changeempty="changeempty"></Dropdown>
-
         <!-- 题库项目 -->
         <div class="-mt-0.3125rem text-16px mb-3.125rem f-b-c flex-col  text-0.875rem" >
             <van-swipe-cell class="mt-0.9375rem bg-white  f-b-c flex-col items-start p-0.625rem rounded-0.625rem w-90% " v-for="item,index in showlist" :key="item.id">
@@ -79,18 +78,18 @@ import {useRoute} from "vue-router"
 import {onMounted, ref, watch,} from "vue"
 import { mainstore } from '@/store/index';
 import { showToast } from 'vant';
-
+import { Ianswer } from '@/utils/type/answer';
 
         const route=useRoute()
         const store=mainstore()
     
         const id=route.query.id//当前课程号
         const index=ref(1)//课程索引 可以切换
-        const libList=ref([]);//当前的题库
+        const libList=ref<Ianswer[]>([]);//当前的题库
 
         const currentPage=ref(1)//当前页号
         const pageSize=10;//页面大小
-        const showlist=ref([]);//当前页要渲染的数组
+        const showlist=ref<Ianswer[]>([]);//当前页要渲染的数组
 
         // 渲染当前页
         const curshow=()=>{
@@ -127,7 +126,7 @@ import { showToast } from 'vant';
         }
 
         // 将添加到收藏夹中的方法封装
-        const addCollectlist=(list:any,index:number)=>{
+        const addCollectlist=(list:Ianswer[],index:number)=>{
                 let flag=true;
                 list.forEach(item => {//加入到错题本之前先遍历一下这个数组 判断是否已经被添加过 
                     if(item.id==libList.value[index].id){

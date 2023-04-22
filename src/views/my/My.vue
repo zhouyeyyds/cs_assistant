@@ -1,34 +1,21 @@
 <script setup lang="ts">
 import Button from "@/components/my/Button.vue"
-import Func from "@/components/my/Func.vue"
+import Details from "@/components/my/Details.vue"
 import Tabbar from "@/components/tabbar/Tabbar.vue"
-import { onMounted,ref } from "vue"
+import { onMounted,ref} from "vue"
+import { useMy } from "@/utils/my/useMy"
+import { showToast } from "vant"
 
+      const {greet,greetIndex,text,randIndex,getGreetByHour}=useMy()
 
-
-      const greet=["早上好","中午好","下午好","晚上好"];
-      const greetIndex=ref(0)
-      const dt=new Date;
-      const hour=dt.getHours()
-
-      // 根据当前时间决定问候语
-      const getGreetByHour=()=>{
-          if(hour<12){
-            greetIndex.value=0
-          }else if(hour<15){
-            greetIndex.value=1
-          }else if(hour<19){
-            greetIndex.value=2
-          }else{
-            greetIndex.value=3
-          }
-      }
-
-
-      const text=["玻璃晴朗，橘子辉煌。","不要停止奔跑，不要回顾来路，来路无可眷恋，值得期待的只有前方。",
-        "你只管努力，剩下的交给时间。","希望熬过一切，星光璀璨。","愿星光为你加冕，青云与你同行，你是人间最美好的风与朝阳，是三百里柔软缠绵的乐章。"]
-      const randIndex=Math.floor(Math.random()*text.length)
-      
+      const loading = ref(false);
+      const onRefresh = () => {
+        setTimeout(() => {
+          showToast('刷新成功');
+          loading.value = false;
+        }, 1000);
+      };
+     
       onMounted(()=>{
         getGreetByHour()
       })
@@ -42,11 +29,15 @@ import { onMounted,ref } from "vue"
         <span class="text-0.875rem mb-0.3125rem text-[#fff]">{{ text[randIndex] }}</span>
         <span class="text-0.8125rem text-[#fff] mb-0.625rem">快去练习吧~</span>
       </div>
-      <!-- 下方部分 显示收藏数量和错题数量-->
+      <!--收藏数量和错题数量-->
       <Button></Button>
   </div>
-  <!-- 详情信息模块 -->
-  <Func></Func>
+  <!-- 下拉刷新 -->
+  <van-pull-refresh v-model="loading" @refresh="onRefresh" style="min-height: 80vh;" :animation-duration="600" class="mt-20px">
+      <!-- 详情信息 -->
+      <Details></Details>
+  </van-pull-refresh>
+  
   <!-- 底部导航 -->
   <Tabbar></Tabbar>
 </template>
@@ -55,14 +46,15 @@ import { onMounted,ref } from "vue"
 .top{
     position: fixed;
     left: 0;
-    top: 0;
+    top: 0px;
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 9.25rem;
-    margin-bottom: 1.25rem;
+    height: 178px;
+    margin-bottom: 20px;
     padding:  .625rem;
+    padding-top: 30px;
     border-bottom-right-radius: .625rem;
     border-bottom-left-radius: .625rem;
     background: url("@/assets/img/bgi.jpg") no-repeat 50% 50%;

@@ -12,6 +12,7 @@
     "lib": ["ESNext", "DOM"],
     "skipLibCheck": true,
     "noEmit": true,
+    "allowJs": true,//允许js
 
     "suppressImplicitAnyIndexErrors": true,		//允许字符串用作下标
      "baseUrl": ".",			

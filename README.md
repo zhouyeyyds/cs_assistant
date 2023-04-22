@@ -20,23 +20,8 @@ npm config get registry
 npm config set registry https://registry.npm.taobao.org
 ```
 
-## 5. 导入数据库 
-> 将根目录下的test.sql导入自己的数据库
-注意数据库的结构一定要保持一致
-![img]("src/assets/img/1.png")
-
-## 6. Vscode 打开 `cs_assistant` 文件夹
-> 在左边的文件管理器中 点击 server/sql.js 
-修改密码为自己数据库的密码
-
-## 7. 启动服务器 
-> 新建一个终端 在目录 `cs_assistant\server` 下
-
-> 输入 `npm install ` 安装服务器相关依赖
-然后输入 `node app.js` 启动服务器
-
-## 8. 启动运行
-> 再新建一个终端 进入目录 `cd cs_assistant` 
+## 5. 启动运行
+> 新建一个终端 进入目录 `cd cs_assistant` 
 
 >  输入`npm install` 安装相关依赖
 > 然后输入`npm run dev`

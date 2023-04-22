@@ -1,25 +1,25 @@
 <script setup lang="ts">
 import Pannel from '@/components/test/simulate/Pannel.vue';
 import Countdown from '@/components/test/simulate/Countdown.vue';
-import { ref,onMounted ,getCurrentInstance, onBeforeUnmount, Ref,} from 'vue';
+import { ref,onMounted , onBeforeUnmount,} from 'vue';
 import { useRouter,useRoute } from 'vue-router';
 import { mainstore } from '@/store';
 import {useTestStore} from '@/store/useTestStore/testStore'
 import type { CollapseItemInstance } from 'vant';
 import type { SwipeInstance } from 'vant';
+import {Ianswer} from "@/utils/type/answer"
 
         
         const router=useRouter();
         const route=useRoute();
         const store=mainstore();//主仓库
         const testStore=useTestStore()//测试模块专用的仓库
-        const proxy=getCurrentInstance();//获取实例对象
         const collapseItemRef = ref<CollapseItemInstance>();//获取折叠面板的实例对象
         const swipeRef=ref<SwipeInstance>();//获取轮播图的实例对象
 
         const showpannel=ref(1)//显示题板
         const showpop=ref(false)//交卷提示
-        const simulatelist=ref([])//仿真题目的数组
+        const simulatelist=ref<Ianswer[]>([])//仿真题目的数组
         const isanswered=ref(0)//是否已经答过
         const status=ref({//题目的结果状态
             a:0,
@@ -28,7 +28,7 @@ import type { SwipeInstance } from 'vant';
             d:0
         });
         const id:number=Number(route.query.id);
-        const total:Ref<number>=ref(0)//总共得分
+        const total=ref(0)//总共得分
         const begintime=ref(0);
         const endtime=ref(0);
         const time=ref(0)
@@ -139,7 +139,7 @@ import type { SwipeInstance } from 'vant';
 
 <template>
   <!-- 顶部导航 -->
-  <div class="fixed left-0 top-0 flex items-center p-y-0 p-x-0.625rem w-full h-3.75rem bg-white text-0.9375rem z-999">
+  <div class="fixed left-0 top-0 flex items-center pt-10px p-x-0.625rem w-full h-4.375rem bg-white text-0.9375rem z-999">
         <van-icon name="arrow-left" class="back" @click="router.go(-1)"/>
         <!-- 倒计时模块 -->
         <Countdown></Countdown>
@@ -147,14 +147,14 @@ import type { SwipeInstance } from 'vant';
 
   <!-- 中间试题的渲染 -->
   <div class="mt-5rem text-0.9375rem">
-    <van-swipe :loop="false" :width="375"   :show-indicators="false" touchable lazy-render ref="swipeRef" @change="onChange"> 
+    <van-swipe :loop="false" :show-indicators="false" touchable lazy-render ref="swipeRef" @change="onChange"> 
         <van-swipe-item class="rounded-0.625rem bg-white shadow-sm" v-for="item,index in simulatelist" :key="item.id">
                 <div class="p-0.625rem">
-                    <van-tag type="primary" v-show="item.type=='s'">单选</van-tag>
+                    <van-tag type="primary">单选</van-tag>
                     <p>{{index+1}} . {{ item.text }}</p>
                     <div class="mt-0.625rem  flex flex-col items-start">
                         <!-- 选项a -->
-                        <div class="f-b-c" @click="test('a',item. answer)">
+                        <div class="f-b-c w-100%" @click="test('a',item. answer)">
                             <!-- 基础图标 -->
                             <span class="w-2.5rem h-2.5rem rounded-full border-0.0625rem border-solid border-[#ccc] mt-0.3125rem mr-0.625rem flex justify-center items-center" v-show="status.a==0">A</span>
                             <!-- 选择正确后的图标 -->
@@ -168,7 +168,7 @@ import type { SwipeInstance } from 'vant';
                             <span class="flex-1">{{ item.a }}</span>
                         </div>
                         <!-- 选项b -->
-                        <div class="f-b-c"  @click="test('b',item. answer)">
+                        <div class="f-b-c w-100%"  @click="test('b',item. answer)">
                             <span class="w-2.5rem h-2.5rem rounded-full border-0.0625rem border-solid border-[#ccc] mt-0.3125rem mr-0.625rem flex justify-center items-center"  v-show="status.b==0">B</span>
                             <svg class="icon w-2.5rem h-2.5rem text-2.5rem mr-0.625rem mt-0.3125rem" aria-hidden="true" v-show="status.b==1">
                                 <use xlink:href="#icon-gouxuan"></use>
@@ -179,7 +179,7 @@ import type { SwipeInstance } from 'vant';
                             <span class="flex-1">{{ item.b }}</span>
                         </div>
                         <!-- 选项c -->
-                        <div class="f-b-c" @click="test('c',item. answer)">
+                        <div class="f-b-c w-100%" @click="test('c',item. answer)">
                             <span class="w-2.5rem h-2.5rem rounded-full border-0.0625rem border-solid border-[#ccc] mt-0.3125rem mr-0.625rem flex justify-center items-center"  v-show="status.c==0">C</span>
                             <svg class="icon w-2.5rem h-2.5rem text-2.5rem mr-0.625rem mt-0.3125rem" aria-hidden="true" v-show="status.c==1">
                                 <use xlink:href="#icon-gouxuan"></use>
@@ -190,7 +190,7 @@ import type { SwipeInstance } from 'vant';
                             <span class="flex-1">{{ item.c }}</span>
                         </div>
                         <!-- 选项d -->
-                        <div class="f-b-c" @click="test('d',item. answer)">
+                        <div class="f-b-c w-100%" @click="test('d',item. answer)">
                             <span class="w-2.5rem h-2.5rem rounded-full border-0.0625rem border-solid border-[#ccc] mt-0.3125rem mr-0.625rem flex justify-center items-center"  v-show="status.d==0">D</span>
                             <svg class="icon w-2.5rem h-2.5rem text-2.5rem mr-0.625rem mt-0.3125rem" aria-hidden="true" v-show="status.d==1">
                                 <use xlink:href="#icon-gouxuan"></use>
@@ -245,11 +245,14 @@ import type { SwipeInstance } from 'vant';
    <!-- 提示交卷 -->
    <van-popup v-model:show="showpop" :style="{ padding: '1.25rem' ,width:'80%',height:'24%'}" round :close-on-click-overlay="false"> 
         <div class="flex flex-col justify-between w-100% h-100%">
-          <span>提示</span>
+            <div>
+                <span class="iconfont icon-tishi mr-10px"></span>
+                <span>提示</span>
+            </div>
           <div class="text-0.875rem">您已经回答了{{testStore.count}}题(共50题),确认交卷？</div>
           <div class="text-0.875rem ml-8.75rem" >
             <span @click="cancel">继续答题</span>
-            <span class="ml-1.875rem" @click="confirm">交卷</span>
+            <span class="ml-1.875rem text-[#35a1fc]" @click="confirm">交卷</span>
           </div>
         </div>
     </van-popup>
